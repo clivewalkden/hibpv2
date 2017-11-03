@@ -2,9 +2,6 @@
 # The version you're using was modified by Jeffrey Mustard. (https://github.com/JeffreyMustard)
 # Original Author = Laurens Houben                          (https://github.com/houbbit)
 
-# LinkedIN URL = https://www.linkedin.com/in/jeffrey-mustard-715884116
-
-
 import requests
 import time 
 import argparse
