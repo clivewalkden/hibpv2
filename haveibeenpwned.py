@@ -3,7 +3,6 @@
 
 # The version you're using was modified by Jeffrey Mustard | Contact:  (https://github.com/JeffreyMustard)
 # Original Author = Laurens Houben | Contact: (https://github.com/houbbit)
-# - 
 
 import requests
 import time 
