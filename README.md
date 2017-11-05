@@ -3,6 +3,8 @@
 
 This is a python script to verify multiple email addresses for pwnage. My version actually works, the original had a syntax error that wouldn't allow it to run.
 
+Type "python setup.py" to install hibpv2
+
 Usage:
   -h, --help   show this help message and exit
   -a ADDRESS   Single email address to be checked
