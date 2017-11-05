@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python hibp
 # -*- coding: utf-8 -*-
 
 # The version you're using was modified by Jeffrey Mustard | Contact:  (https://github.com/JeffreyMustard)
