@@ -3,8 +3,6 @@
 A command line interface for batch checking emails against HaveIBeenPwned or just checking a singular email.
 This is a python script to verify multiple email addresses for pwnage. My version actually works, the original had a syntax error that wouldn't allow it to run.
 
-Type "python setup.py" to install hibpv2
-
 Usage:
   -h, --help   Shows this help message and exits
   -a ADDRESS   Singular email address to be checked for pwnage
