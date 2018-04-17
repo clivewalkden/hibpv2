@@ -23,5 +23,3 @@ Example output:
     Refer to acceptable use of API: https://haveibeenpwned.com/API/v2#AcceptableUse
 
 [i] example@example.com has not been breached.
-
-EOF:w
