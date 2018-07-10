@@ -35,7 +35,7 @@ def checkAddress(email):
     check=requests.get(server + email + "?includeUnverified=true",
                  verify=sslVerify)
     if str(check.status_code) == "404":
-        print"[✓] " + email + " has not been breached.")
+        print("[✓] " + email + " has not been breached.")
         time.sleep(rate)
         return False
     elif str(check.status_code) == "200":
