@@ -19,6 +19,9 @@ args = parser.parse_args()
 rate = 1.5
 server = "https://haveibeenpwned.com/api/v2/breachedaccount/"
 sslVerify = True
+address = str(args.address)
+filename = str(args.filename)
+lstEmail = ["info@example.com","example@example.com", "test@test.com"]
 
 def main():
     if address != "None":
