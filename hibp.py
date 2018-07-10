@@ -6,7 +6,7 @@
 # Original Author = Laurens Houben | Contact: (https://github.com/houbbit)
 
 import requests
-import time 
+import time
 import argparse
 
 parser = argparse.ArgumentParser(description="Verify if email address has been pwned")
@@ -16,7 +16,7 @@ parser.add_argument("-f", dest="filename",
                   help="File to be checked with one email addresses per line")
 args = parser.parse_args()
 
-rate = 1.5
+#declare global vars
 server = "https://haveibeenpwned.com/api/v2/breachedaccount/"
 sslVerify = True
 address = str(args.address)
@@ -35,6 +35,7 @@ def main():
             checkAddress(email)
 
 def checkAddress(email):
+    rate = 1.5
     check=requests.get(server + email + "?includeUnverified=true",
                  verify=sslVerify)
     if str(check.status_code) == "404":
