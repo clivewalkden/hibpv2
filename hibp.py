@@ -8,6 +8,7 @@
 import requests
 import time
 import argparse
+import json
 
 parser = argparse.ArgumentParser(description="Verify if email address has been pwned")
 parser.add_argument("-a", dest="address",
@@ -48,10 +49,10 @@ def checkAddress(email):
     #Check for 200 status - 200 means that the API found a breach
     elif str(check.status_code) == "200":
         print("[X] " + email + " has been breached!")
-        breach_email.append(email)
+        breached_emails.append(email)
         time.sleep(rate)
         return True
-    #Check for HTTP code 429(rate limit)   
+    #Check for HTTP code 429(rate limit)
     elif str(check.status_code) == "429":
         print("[!] Rate limit exceeded, server instructed us to retry after " + check.headers['Retry-After'] + " seconds")
         print("    Refer to acceptable use of API: https://haveibeenpwned.com/API/v2#AcceptableUse")
@@ -62,32 +63,46 @@ def checkAddress(email):
         print("[!] Something went wrong while checking " + email)
         time.sleep(rate)
         return True
-      
+
 def breach_info():
     rate = 1.5
-    check=requests.get(server + email + "?includeUnverified=true",
-                 verify=sslVerify)
+    for x in xrange(0, len(breached_emails)):
+        check=requests.get(server + breached_emails[x]+ "?includeUnverified=true",
+                        verify=sslVerify)
     #Check for 404 - 404 meajns that the API returned no results
-    if str(check.status_code) == "404":
-        print("failure for checking " + email)
-        time.sleep(rate)
-        return False
+        if str(check.status_code) == "404":
+                print("failure for checking " + email)
+                time.sleep(rate)
+                #return False
     #Check for 200 status - 200 means that the API found a breach
-    elif str(check.status_code) == "200":
-        print(check)
-        time.sleep(rate)
-        return True
-    #Check for HTTP code 429(rate limit)   
-    elif str(check.status_code) == "429":
-        print("[!] Rate limit exceeded, server instructed us to retry after " + check.headers['Retry-After'] + " seconds")
-        print("    Refer to acceptable use of API: https://haveibeenpwned.com/API/v2#AcceptableUse")
-        rate = float(check.headers['Retry-After'])
-        time.sleep(rate)
-        checkAddress(email)
-    else:
-        print("[!] Something went wrong while checking " + email)
-        time.sleep(rate)
-        return True     
-      
+        elif str(check.status_code) == "200":
+                print("Breach info for: " + breached_emails[x])
+                data = json.loads(check.text)
+                #print json.dumps(data, indent=4)
+                for x in xrange(0,len(data)):
+                        name = data[x]['Name']
+                        dataclass=[]
+                        print "!------ " + name + " ------!"
+                        print "Breached data types: "
+                        for i in xrange(0,len(data[0]['DataClasses'])):
+                                dataclass.append(data[0]['DataClasses'][i])
+                                print '\t' +  dataclass[i]
+                #for i in xrange(0,len(data)):
+        #               print data[i]['Title']['Name']
+                time.sleep(rate)
+                #return True
+    #Check for HTTP code 429(rate limit)
+        elif str(check.status_code) == "429":
+                print("[!] Rate limit exceeded, server instructed us to retry after " + check.headers['Retry-After'] + " seconds")
+                print("    Refer to acceptable use of API: https://haveibeenpwned.com/API/v2#AcceptableUse")
+                rate = float(check.headers['Retry-After'])
+                time.sleep(rate)
+                checkAddress(email)
+        else:
+                print("[!] Something went wrong while checking " + email)
+                time.sleep(rate)
+                return True
+
 if __name__ == "__main__":
     main()
+root@dresec:~/haveib
