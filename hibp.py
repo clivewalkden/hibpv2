@@ -38,14 +38,17 @@ def checkAddress(email):
     rate = 1.5
     check=requests.get(server + email + "?includeUnverified=true",
                  verify=sslVerify)
+    #Check for 404 - 404 meajns that the API returned no results
     if str(check.status_code) == "404":
         print("[✓] " + email + " has not been breached.")
         time.sleep(rate)
         return False
+    #Check for 200 status - 200 means that the API found a breach
     elif str(check.status_code) == "200":
         print("[X] " + email + " has been breached!")
         time.sleep(rate)
         return True
+    #Check for HTTP code 429(rate limit)   
     elif str(check.status_code) == "429":
         print("[!] Rate limit exceeded, server instructed us to retry after " + check.headers['Retry-After'] + " seconds")
         print("    Refer to acceptable use of API: https://haveibeenpwned.com/API/v2#AcceptableUse")
