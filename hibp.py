@@ -43,7 +43,7 @@ def checkAddress(email):
         time.sleep(rate)
         return True
     elif str(check.status_code) == "429":
-        print"[!] Rate limit exceeded, server instructed us to retry after " + check.headers['Retry-After'] + " seconds")
+        print("[!] Rate limit exceeded, server instructed us to retry after " + check.headers['Retry-After'] + " seconds")
         print("    Refer to acceptable use of API: https://haveibeenpwned.com/API/v2#AcceptableUse")
         rate = float(check.headers['Retry-After'])
         time.sleep(rate)
