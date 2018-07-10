@@ -10,10 +10,19 @@ Usage:
 
  
 Example output:
+[✓]info@example.com has not been breached.
+[X]example@example.com has been breached.
 
-[i] info@example.com has not been breached.
+#end of check it runs the breach info report
 
-[!] lastfm@example.com has been breached!
+Breach info for: example@example.com
+!------ Ticketfly ------!
+Breached data types:
+        Email addresses
+        Names
+        Phone numbers
+        Physical addresses
+
 
 [!] Rate limit exceeded, server instructed us to retry after 2 seconds
     Refer to acceptable use of API: https://haveibeenpwned.com/API/v2#AcceptableUse
@@ -21,3 +30,5 @@ Example output:
 [i] example@example.com has not been breached.
 
 This has been updated for the "HaveIBeenPwned?" API 2. This is a modified/working version of houbbit's python program that checks emails for pwnage using the HaveIBeenPwned? API.
+
+This is another updated version that fixed up JeffreyMustard's repor, included the ability to report on basic breach data information 
