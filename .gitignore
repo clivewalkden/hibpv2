@@ -121,6 +121,9 @@ instance/
 # Sphinx documentation
 docs/_build/
 
+*.csv
+test1.txt
+
 # PyBuilder
 target/
 
